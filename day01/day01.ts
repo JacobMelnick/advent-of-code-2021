@@ -28,4 +28,3 @@ const groupByThrees = (array: number[]): number[] => {
 };
 
 console.log(countDecreases(groupByThrees(data)));
-``
