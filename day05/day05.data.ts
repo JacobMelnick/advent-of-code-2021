@@ -12,7 +12,7 @@ export const convertFile = (
   randomNums: number[];
   boards: Board[];
 } => {
-  const [numArr, ...rest] = fileString.split("\r\n");
+  const [numArr, ...rest] = fileString.split("\n");
   const boards = rest.reduce<Board[]>((acc, cur) => {
     const copy = [...acc];
     if (cur.length === 0) {
@@ -48,7 +48,7 @@ export class Bingo implements IBingo {
   board: Board;
   marked: MarkedBoard;
   lastCalled: number = 0;
-  winner: boolean = false;
+  winner: boolean;
 
   constructor(board: Board) {
     this.board = [...board.map((row) => [...row])];
@@ -114,7 +114,6 @@ export const playBingo = ({
       }
     }
   }
-  return 0;
 };
 
 export const findLastWinner = ({
@@ -145,7 +144,7 @@ export const findLastWinner = ({
   return lastWinner.sumUnmarked() * lastWinner.lastCalled;
 };
 
-const fileString = fs.readFileSync(__dirname + "/day04.data.txt").toString();
+const fileString = fs.readFileSync(__dirname + "/day-04.data.txt").toString();
 const { boards, randomNums } = convertFile(fileString);
 
 // Part 1
